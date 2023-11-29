@@ -1,5 +1,4 @@
 #!/usr/bin/python3
 number = 98
-print(f"{number}, followed by Battery street,\n")
 
-
+print(f"the {number}, followed by Battery street,\n")
