@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-from sys import argv
-
-if __name__ == "__main__":
-    argc = len(argv) - 1
-    plural_s = 's' if argc != 1 else ''
-
-    print("{} argument{}{}{}".format(argc, plural_s, ':' if argc > 0 else '.', ''))
-
-    for i in range(argc):
-        print("{}: {}".format(i + 1, argv[i + 1]))
+if __name__ == '__main__':
+    from calculator_1 import add, sub, mul, div
+    a = 10
+    b = 5
+    print("{} + {} = {}".format(a, b, add(a, b)))
+    print("{} - {} = {}".format(a, b, sub(a, b)))
+    print("{} * {} = {}".format(a, b, mul(a, b)))
+    print("{} / {} = {}".format(a, b, div(a, b)))
 
