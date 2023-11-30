@@ -28,4 +28,3 @@ if __name__ == "__main__":
 
     # Print the result
     print("{} {} {} = {}".format(a, operator, b, result))
-
