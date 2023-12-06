@@ -1,21 +1,43 @@
 #include <Python.h>
 
+void print_python_list(PyObject *p) {
+    Py_ssize_t i, size;
+    PyObject *item;
+
+    if (!PyList_Check(p)) {
+        fprintf(stderr, "[ERROR] Invalid Python List\n");
+        return;
+    }
+
+    size = PyList_Size(p);
+
+    printf("[*] Python list info\n");
+    printf("[*] Size of the Python List = %zd\n", size);
+    printf("[*] Allocated = %zd\n", ((PyVarObject *)p)->ob_size);
+
+    for (i = 0; i < size; ++i) {
+        item = ((PyListObject *)p)->ob_item[i];
+        printf("Element %zd: %s\n", i, Py_TYPE(item)->tp_name);
+    }
+}
+
 void print_python_bytes(PyObject *p) {
     Py_ssize_t size, i;
     char *str;
 
-    if (!PyObject_Bytes(p)) {
+    if (!PyObject_HasAttrString(p, "encode")) {
         fprintf(stderr, "[ERROR] Invalid Bytes Object\n");
         return;
     }
 
-    size = PyObject_Size(p);
-    str = PyBytes_AsString(PyObject_Bytes(p));
-
-    if (str == NULL) {
-        fprintf(stderr, "[ERROR] Failed to extract string from Bytes Object\n");
+    PyObject *encoded_bytes = PyObject_CallMethod(p, "encode", NULL);
+    if (encoded_bytes == NULL) {
+        fprintf(stderr, "[ERROR] Failed to encode Bytes Object\n");
         return;
     }
+
+    size = PyBytes_Size(encoded_bytes);
+    str = PyBytes_AsString(encoded_bytes);
 
     printf("[.] bytes object info\n");
     printf("  size: %zd\n", size);
@@ -26,27 +48,8 @@ void print_python_bytes(PyObject *p) {
         printf("%02x ", (unsigned char)str[i]);
     }
     printf("\n");
-}
 
-void print_python_list(PyObject *p) {
-    Py_ssize_t i, size;
-    PyObject *item;
-
-    if (!PyList_Check(p)) {
-        fprintf(stderr, "[ERROR] Invalid Python List\n");
-        return;
-    }
-
-    size = PyObject_Size(p);
-
-    printf("[*] Python list info\n");
-    printf("[*] Size of the Python List = %zd\n", size);
-    printf("[*] Allocated = %zd\n", ((PyVarObject *)p)->ob_size);
-
-    for (i = 0; i < size; ++i) {
-        item = PyList_GetItem(p, i);
-        printf("Element %zd: %s\n", i, Py_TYPE(item)->tp_name);
-    }
+    Py_XDECREF(encoded_bytes);
 }
 
 int main() {
