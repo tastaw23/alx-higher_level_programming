@@ -8,7 +8,13 @@ void print_python_bytes(PyObject *p) {
 
     printf("[.] bytes object info\n");
     printf("  size: %zd\n", ((PyVarObject *)p)->ob_size);
-    printf("  trying string: %s\n", ((PyBytesObject *)p)->ob_sval);
+    
+    // Print the string representation using a loop
+    printf("  trying string: ");
+    for (Py_ssize_t i = 0; i < ((PyVarObject *)p)->ob_size; ++i) {
+        printf("%c", ((PyBytesObject *)p)->ob_sval[i]);
+    }
+    printf("\n");
 
     printf("  first 10 bytes: ");
     Py_ssize_t size = ((PyVarObject *)p)->ob_size;
