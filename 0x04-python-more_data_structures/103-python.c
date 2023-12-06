@@ -9,15 +9,16 @@ void print_python_list(PyObject *p) {
         return;
     }
 
-    size = PyList_Size(p);
+    size = PyObject_Size(p);
 
     printf("[*] Python list info\n");
     printf("[*] Size of the Python List = %zd\n", size);
     printf("[*] Allocated = %zd\n", ((PyVarObject *)p)->ob_size);
 
     for (i = 0; i < size; ++i) {
-        item = ((PyListObject *)p)->ob_item[i];
+        item = PySequence_ITEM(p, i);
         printf("Element %zd: %s\n", i, Py_TYPE(item)->tp_name);
+        Py_XDECREF(item);
     }
 }
 
@@ -36,7 +37,7 @@ void print_python_bytes(PyObject *p) {
         return;
     }
 
-    size = PyBytes_Size(encoded_bytes);
+    size = PyObject_Size(encoded_bytes);
     str = PyBytes_AsString(encoded_bytes);
 
     printf("[.] bytes object info\n");
