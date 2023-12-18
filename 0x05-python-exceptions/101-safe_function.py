@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import sys
 
 def safe_function(fct, *args):
@@ -7,7 +6,7 @@ def safe_function(fct, *args):
         result = fct(*args)
         return result
     except Exception as e:
-        print("Exception:", e, file=sys.stderr)
+        print("Exception: {}".format(e), file=sys.stderr)
         return None
 
 # Example usage:
@@ -30,4 +29,4 @@ def print_list(my_list, len):
 
 result = safe_function(print_list, [1, 2, 3, 4], 10)
 print("result of print_list: {}".format(result))
-###
+
