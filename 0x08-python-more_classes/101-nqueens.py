@@ -1,25 +1,51 @@
 #!/usr/bin/python3
 import sys
 
+
 def is_safe(board, row, col, N):
-    # Check this row on left side
+    """
+    Check if it's safe to place a queen at a given position on the board.
+
+    Args:
+    - board: The chessboard representation.
+    - row: The row index to check.
+    - col: The column index to check.
+    - N: The size of the chessboard.
+
+    Returns:
+    - True if it's safe to place a queen, False otherwise.
+    """
+    # Check this row on the left side
     for i in range(col):
         if board[row][i] == 1:
             return False
 
-    # Check upper diagonal on left side
+    # Check upper diagonal on the left side
     for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
         if board[i][j] == 1:
             return False
 
-    # Check lower diagonal on left side
+    # Check lower diagonal on the left side
     for i, j in zip(range(row, N, 1), range(col, -1, -1)):
         if board[i][j] == 1:
             return False
 
     return True
 
+
 def solve_nqueens_util(board, col, N, solutions):
+    """
+    Recursive utility function to solve the N Queens problem.
+
+    Args:
+    - board: The chessboard representation.
+    - col: The current column to consider.
+    - N: The size of the chessboard.
+    - solutions: A list to store the solutions.
+
+    Returns:
+    - None
+    """
     if col == N:
         solutions.append([[i, board[i].index(1)] for i in range(N)])
         return
@@ -30,7 +56,17 @@ def solve_nqueens_util(board, col, N, solutions):
             solve_nqueens_util(board, col + 1, N, solutions)
             board[i][col] = 0
 
+
 def solve_nqueens(N):
+    """
+    Solve the N Queens problem and print all solutions.
+
+    Args:
+    - N: The size of the chessboard.
+
+    Returns:
+    - None
+    """
     if not isinstance(N, int):
         print("N must be a number")
         sys.exit(1)
@@ -45,6 +81,7 @@ def solve_nqueens(N):
 
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
