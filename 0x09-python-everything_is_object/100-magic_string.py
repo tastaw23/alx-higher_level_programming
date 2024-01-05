@@ -6,6 +6,6 @@ def magic_string():
 
     Format: see example
     """
-    magic_string.count = getattr(magic_string, 'count', -1) + 1
-    return "BestSchool" + ", BestSchool" * magic_string.count
+    magic_string.n = getattr(magic_string, 'n', 0) + 1
+    return ("BestSchool, " * (magic_string.n - 1) + "BestSchool")
 ###
