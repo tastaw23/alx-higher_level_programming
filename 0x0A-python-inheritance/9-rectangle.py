@@ -5,6 +5,7 @@ Module defining Rectangle class inheriting from BaseGeometry.
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
+
 class Rectangle(BaseGeometry):
     """
     Rectangle class inheriting from BaseGeometry.
@@ -40,11 +41,3 @@ class Rectangle(BaseGeometry):
         - A string in the format "[Rectangle] <width>/<height>"
         """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
-
-# Example usage
-if __name__ == "__main__":
-    r = Rectangle(3, 5)
-
-    print(r)
-    print(r.area())
-

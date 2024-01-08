@@ -3,6 +3,7 @@
 Module defining MyInt class inheriting from int.
 """
 
+
 class MyInt(int):
     """
     MyInt class inheriting from int.
@@ -31,11 +32,3 @@ class MyInt(int):
         - True if equal, False otherwise.
         """
         return super().__eq__(other)
-
-# Example usage
-if __name__ == "__main__":
-    my_i = MyInt(3)
-    print(my_i)
-    print(my_i == 3)
-    print(my_i != 3)
-
