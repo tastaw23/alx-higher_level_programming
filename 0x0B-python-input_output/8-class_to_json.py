@@ -5,6 +5,7 @@ Module for returning the dictionary description with simple data structure
 of an object.
 """
 
+
 def class_to_json(obj):
     """
     Returns the dictionary description with simple data structure

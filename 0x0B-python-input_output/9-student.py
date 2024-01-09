@@ -3,6 +3,7 @@
 Module for defining a Student class.
 """
 
+
 class Student:
     """
     Class that defines a student.
@@ -33,17 +34,3 @@ class Student:
             'last_name': self.last_name,
             'age': self.age
         }
-
-if __name__ == "__main__":
-    # Test the Student class
-    Student = __import__('9-student').Student
-
-    students = [Student("John", "Doe", 23), Student("Bob", "Dylan", 27)]
-
-    for student in students:
-        j_student = student.to_json()
-        print(type(j_student))
-        print(j_student['first_name'])
-        print(type(j_student['first_name']))
-        print(j_student['age'])
-        print(type(j_student['age']))
