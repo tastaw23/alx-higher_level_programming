@@ -1,15 +1,20 @@
 #!/usr/bin/python3
 
+
 import sys
+
 
 def print_stats(total_size, status_codes):
     print("File size: {}".format(total_size))
     for code in sorted(status_codes):
         print("{}: {}".format(code, status_codes[code]))
 
+
 def main():
     total_size = 0
-    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+    status_codes = {
+            "200": 0, "301": 0, "400": 0, "401": 0,
+            "403": 0, "404": 0, "405": 0, "500": 0}
 
     try:
         for i, line in enumerate(sys.stdin, start=1):
@@ -25,7 +30,3 @@ def main():
 
     except KeyboardInterrupt:
         print_stats(total_size, status_codes)
-
-if __name__ == "__main__":
-    main()
-
