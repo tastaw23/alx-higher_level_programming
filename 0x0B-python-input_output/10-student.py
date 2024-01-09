@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-
 class Student:
     """
     Class that defines a student.
@@ -24,7 +23,7 @@ class Student:
         Retrieves a dictionary representation of a Student instance.
 
         Args:
-            attrs (list): A list of attribute names to retrieve. Default is None.
+            attrs (list): list attribute names to retrieve. Default is None.
 
         Returns:
             dict: Dictionary representation of the Student instance.
@@ -36,4 +35,5 @@ class Student:
                 'age': self.age
             }
         else:
-            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
+            return
+        {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
