@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-"""
-Module for defining a Student class.
-"""
 
 
 class Student:
@@ -27,17 +24,16 @@ class Student:
         Retrieves a dictionary representation of a Student instance.
 
         Args:
-            attrs (list):list strings containing attribute names to retrieve.
+            attrs (list): A list of attribute names to retrieve. Default is None.
 
         Returns:
             dict: Dictionary representation of the Student instance.
         """
-        if attrs is None or not isinstance(attrs, list):
+        if attrs is None:
             return {
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'age': self.age
             }
         else:
-            return
-        {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
+            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
