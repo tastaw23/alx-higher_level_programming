@@ -3,6 +3,7 @@
 Module for defining a Student class.
 """
 
+
 class Student:
     """
     Class that defines a student.
@@ -26,7 +27,7 @@ class Student:
         Retrieves a dictionary representation of a Student instance.
 
         Args:
-            attrs (list): A list of strings containing attribute names to retrieve.
+            attrs (list):list strings containing attribute names to retrieve.
 
         Returns:
             dict: Dictionary representation of the Student instance.
@@ -38,20 +39,5 @@ class Student:
                 'age': self.age
             }
         else:
-            return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
-
-if __name__ == "__main__":
-    # Test the Student class
-    Student = __import__('10-student').Student
-
-    student_1 = Student("John", "Doe", 23)
-    student_2 = Student("Bob", "Dylan", 27)
-
-    j_student_1 = student_1.to_json()
-    j_student_2 = student_2.to_json(['first_name', 'age'])
-    j_student_3 = student_2.to_json(['middle_name', 'age'])
-
-    print(j_student_1)
-    print(j_student_2)
-    print(j_student_3)
-
+            return
+        {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
