@@ -23,15 +23,3 @@ def pascal_triangle(n):
         triangle.append(row)
 
     return triangle
-
-if __name__ == "__main__":
-    # Test the pascal_triangle function
-    def print_triangle(triangle):
-        """
-        Print the triangle.
-        """
-        for row in triangle:
-            print("[{}]".format(",".join([str(x) for x in row])))
-
-    print_triangle(pascal_triangle(5))
-
