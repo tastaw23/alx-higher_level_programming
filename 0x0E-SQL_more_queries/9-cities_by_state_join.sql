@@ -1,8 +1,8 @@
--- Task: List all cities in the database hbtn_0d_usa with associated state names
+-- lists all cities contained in the database hbtn_0d_usa
+   -- Each record should display: cities.id - cities.name - states.name
+   -- Results must be sorted in ascending order by cities.id
+   -- The database name will be passed as an argument of the mysql command
 
--- Database name will be passed as an argument
-
--- List all cities with associated state names
-SELECT cities.id, cities.name, (SELECT states.name FROM states WHERE states.id = cities.state_id) AS state_name
-FROM cities
-ORDER BY cities.id ASC;
+SELECT cities.id, cities.name, states.name FROM cities
+JOIN states ON cities.state_id=states.id
+ORDER BY cities.id;
