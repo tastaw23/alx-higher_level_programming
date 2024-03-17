@@ -1,42 +1,23 @@
 #!/usr/bin/python3
+""" Script that lists all states from the database hbtn_0e_0_usa """
 import MySQLdb
-import sys
+from sys import argv
 
-if __name__ == "__main__":
-    # Get MySQL username, password, and database name from command-line arguments
-    if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
-        sys.exit(1)
-    
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+# The code should not be executed when imported
+if __name__ == '__main__':
 
-    # Connect to MySQL server
-    try:
-        db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
-        cursor = db.cursor()
-    except MySQLdb.Error as e:
-        print("MySQL Error {}: {}".format(e.args[0], e.args[1]))
-        sys.exit(1)
+    # make a connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
 
-    # Query to select all states sorted by id in ascending order
-    query = "SELECT * FROM states ORDER BY id ASC;"
+    # It gives us the ability to have multiple seperate working environments
+    # through the same connection to the database.
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states")
 
-    # Execute the query
-    try:
-        cursor.execute(query)
-        states = cursor.fetchall()
-    except MySQLdb.Error as e:
-        print("MySQL Error {}: {}".format(e.args[0], e.args[1]))
-        cursor.close()
-        db.close()
-        sys.exit(1)
-
-    # Display results
-    for state in states:
-        print(state)
-
-    # Close cursor and database connection
-    cursor.close()
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+    # Clean up process
+    cur.close()
     db.close()
