@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Script that takes in an argument and displays all values in the states table
-of hbtn_0e_0_usa where name matches the argument."""
+"""
+Script that takes in an argument and displays all values in the states table
+of hbtn_0e_0_usa where name matches the argument, safe from MySQL injection.
+"""
 
 import sys
 import MySQLdb
@@ -24,7 +26,7 @@ if __name__ == "__main__":
     # Create a cursor object
     cursor = db.cursor()
 
-    # Execute SQL query
+    # Prepare a parameterized SQL query to prevent SQL injection
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
     cursor.execute(query, (state_name,))
 
