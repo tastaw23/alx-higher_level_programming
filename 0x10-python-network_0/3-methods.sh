@@ -1,3 +1,4 @@
 #!/bin/bash
-# script to get the allowed methods in an server if availaible through OPTIONS http request
-curl -s -I -X OPTIONS "$1" | grep 'Allow:' | cut -f2- -d' '
+# This script takes in a URL and displays all HTTP methods the server will accept
+
+curl -sI -X OPTIONS "$1" | grep -i Allow | cut -d ' ' -f 2-
