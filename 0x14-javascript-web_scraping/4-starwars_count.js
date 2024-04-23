@@ -15,7 +15,7 @@ request(apiUrl, (error, response, body) => {
     return;
   }
 
-  const films = JSON.parse(body).results;
+  const films = JSON.parse(body);
   let count = 0;
 
   films.forEach(film => {
